@@ -1,8 +1,6 @@
 #pragma once
 
 #include <Arduino.h>
-#include <Keyboard.h>
-#include <Mouse.h>
 #include "Configuration.h"
 
 
