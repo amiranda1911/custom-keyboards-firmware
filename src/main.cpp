@@ -7,7 +7,7 @@ int main ()
     
   // the loop function runs over and over again forever
   while(true) {
-    keyboard->updateDisplay();
+    keyboard->update();
     delay(10);
   }
 }
