@@ -1,13 +1,19 @@
 #include "KeyEngine.hpp"
 
-int main ()
+ KeyEngine * keyboard;
+
+
+void setup ()
 {
-  init(); // inicializa o Arduino core (timers, ADC, etc.)
-  KeyEngine * keyboard = new KeyEngine();
-    
-  // the loop function runs over and over again forever
-  while(true) {
-    keyboard->update();
-    delay(10);
-  }
+  // inicializa o Arduino core (timers, ADC, etc.)
+    keyboard = new KeyEngine();
+    delay(1000);
+
+}
+
+void loop()
+{
+  keyboard->update();
+  delay(10);
+
 }
