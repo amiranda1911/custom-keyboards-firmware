@@ -4,6 +4,15 @@
 #define SCREEN_WIDTH    128
 #define SCREEN_HEIGHT   64
 #define _6X6_MATRIX_
+
+#define LEFT_SIDE
+
+#ifdef LEFT_SIDE
+
+#define ENCODER_A MEDIA_VOL_UP
+#define ENCODER_B MEDIA_VOL_DOWN 
+
+#endif
 /*
  * QWERTY
  * ,-----------------------------------------.                    ,-----------------------------------------.
