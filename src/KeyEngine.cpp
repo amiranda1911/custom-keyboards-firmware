@@ -34,16 +34,19 @@ KeyEngine::KeyEngine() : display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1)
         Serial.println(F("SSD1306 allocation failed"));
     }
 
-    Keyboard.begin();
-
+    
     
     pinMode(encoder_pins[0],INPUT);
     pinMode(encoder_pins[1],INPUT);
 
     attachInterrupt(digitalPinToInterrupt(encoder_pins[0]), readEncoder, CHANGE);
     attachInterrupt(digitalPinToInterrupt(encoder_pins[1]), readEncoder, CHANGE);
-
     
+    BootKeyboard.begin();
+    Consumer.begin();
+    
+    delay(1000);
+
 }
 
 void KeyEngine::update(){
@@ -52,13 +55,16 @@ void KeyEngine::update(){
         encPosition += encoderDirection;
 
         if (encoderDirection > 0) {
-            
-        Keyboard.print("Hello!");
+
+            Consumer.write(ENCODER_A);
         }
-        
+        if (encoderDirection < 0)
+        {
+            Consumer.write(ENCODER_B);
+        }
     }
 
-  
+   
     updateDisplay();
 }
 
