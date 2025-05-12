@@ -1,5 +1,5 @@
 #pragma once
-#include <Arduino.h>
+#include "Configuration.h"
 // Arduino Leonardo Keyboard with Pin Definitions
 
 // Reserved Pins
@@ -14,10 +14,26 @@ const int encoder_pins[2] = {
 const int underglow_pin = 4;  // Underglow Left (RGB)
 
 // Layout Definitions
-
-#if defined(_6X6_MATRIX_)
+#if defined(_4X6_MATRIX_)
     // 6x6 Matrix Layout
-    const int rows[6] = {
+    const int pinRows[6] = {
+        5,   // Row 1
+        6,   // Row 2
+        7,   // Row 3
+        8,   // Row 4
+    };
+
+    const int pinCols[6] = {
+        11,   // Column 1
+        12,   // Column 2
+        13,   // Column 3
+        A0,   // Column 4
+        A1,   // Column 5
+        A2    // Column 6
+    };
+#elif defined(_6X6_MATRIX_)
+    // 6x6 Matrix Layout
+    const int pinRows[6] = {
         5,   // Row 1
         6,   // Row 2
         7,   // Row 3
@@ -26,7 +42,7 @@ const int underglow_pin = 4;  // Underglow Left (RGB)
         10   // Row 6
     };
 
-    const int lines[6] = {
+    const int pinCols[6] = {
         11,   // Column 1
         12,   // Column 2
         13,   // Column 3
@@ -37,7 +53,7 @@ const int underglow_pin = 4;  // Underglow Left (RGB)
 
 #elif defined(_5X12_MATRIX_)
     // 5x12 Matrix Layout
-    const int rows[5] = {
+    const int pinRows[5] = {
         5,    // Row 1
         6,    // Row 2
         7,    // Row 3
@@ -45,7 +61,7 @@ const int underglow_pin = 4;  // Underglow Left (RGB)
         9     // Row 5
     };
 
-    const int lines[12] = {
+    const int pinCols[12] = {
         10,   // Column 1
         11,   // Column 2
         12,   // Column 3
@@ -62,7 +78,7 @@ const int underglow_pin = 4;  // Underglow Left (RGB)
 
 #elif defined(_6X14_MATRIX_)
     // 6x14 Matrix Layout
-    const int rows[6] = {
+    const int pinRows[6] = {
         4,    // Row 1
         5,    // Row 2
         6,    // Row 3
@@ -71,7 +87,7 @@ const int underglow_pin = 4;  // Underglow Left (RGB)
         9     // Row 6
     };
 
-    const int lines[14] = {
+    const int pinCols[14] = {
         10,   // Column 1
         11,   // Column 2
         12,   // Column 3
@@ -90,7 +106,7 @@ const int underglow_pin = 4;  // Underglow Left (RGB)
 
 #elif defined(_6X18_MATRIX_)
     // 6x18 Matrix Layout
-    const int rows[6] = {
+    const int pinRows[6] = {
         4,    // Row 1
         5,    // Row 2
         6,    // Row 3
@@ -99,7 +115,7 @@ const int underglow_pin = 4;  // Underglow Left (RGB)
         9     // Row 6
     };
 
-    const int lines[18] = {
+    const int pinCols[18] = {
         10,   // Column 1
         11,   // Column 2
         12,   // Column 3
@@ -122,5 +138,5 @@ const int underglow_pin = 4;  // Underglow Left (RGB)
 
 
 #else
-    #error "No valid keyboard layout defined! Define a valid keyboard layout such as _6X6_MATRIX_, _5X12_MATRIX_, _6X14_MATRIX_, _6X18_MATRIX_, or _SPLIT_6X6_MATRIX_"
+    #error "No valid keyboard layout defined! Define a valid keyboard layout such as _4X6_MATRIX_,_6X6_MATRIX_, _5X12_MATRIX_, _6X14_MATRIX_, _6X18_MATRIX_, or _SPLIT_6X6_MATRIX_"
 #endif
