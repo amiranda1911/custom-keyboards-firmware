@@ -50,6 +50,9 @@ KeyEngine::KeyEngine() : display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1)
 }
 
 void KeyEngine::update(){
+    matrixKeys();
+    updateDisplay();
+
     if (encoderMoved) {
         encoderMoved = false; // clear flag
         encPosition += encoderDirection;
@@ -63,9 +66,58 @@ void KeyEngine::update(){
             Consumer.write(ENCODER_B);
         }
     }
+}
 
-   
-    updateDisplay();
+void KeyEngine::matrixKeys()
+{
+    #ifdef COLS2ROWS
+    for(byte r=0; r < keyRowsCount; r++ ){
+        pinMode(pinRows[r], INPUT_PULLUP);
+    }
+     for(byte c=0; c < keyColsCount; c++ ){
+        pinMode(pinCols[c], OUTPUT);
+        digitalWrite(pinCols[c], HIGH);
+    }
+
+    for (byte c = 0; c < keyColsCount; c++) {
+        // Activate line
+        digitalWrite(pinCols[c], LOW);
+
+        for (byte r = 0; r < keyRowsCount; r++) {
+
+            bool pressed = !digitalRead(pinRows[r]); //read row pin (active in low)
+
+            if (pressed && !keyState[r][c]) {
+                keyPress(r,c);
+                keyState[r][c] = true;
+            } else if (!pressed && keyState[r][c]) {
+                keyRelease(r,c);
+                keyState[r][c] = false;
+            }
+        }
+    }
+    #endif
+
+
+}
+
+void KeyEngine::keyPress(byte col, byte row){
+    if(keyConfig[curLayer][row][col] == KEY_LAYER_UP && !keyState[row][col])
+        curLayer ++;
+    if(keyConfig[curLayer][row][col] == KEY_LAYER_DOWN && !keyState[row][col])
+        curLayer --;
+
+    BootKeyboard.press(keyConfig[curLayer][row][col]);
+    
+}
+
+void KeyEngine::keyRelease(byte col, byte row){
+    if(keyConfig[curLayer][row][col] == KEY_LAYER_UP && keyState[row][col])
+        curLayer = 1;
+    if(keyConfig[curLayer][row][col] == KEY_LAYER_DOWN && keyState[row][col])
+        curLayer = 1;
+
+    BootKeyboard.release(keyConfig[curLayer][row][col]);
 }
 
 void KeyEngine::updateDisplay(){
