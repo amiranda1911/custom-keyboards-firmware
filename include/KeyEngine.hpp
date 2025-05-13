@@ -15,15 +15,14 @@
 //#define _6X14_MATRIX_
 //#define _6X18_MATRIX_
 
+
+
 class KeyEngine
 {
-
 private:
-    
-    Adafruit_SSD1306 display;
     bool keyState[keyRowsCount][keyColsCount];
     byte curLayer = 1;
-
+    
 public:
     KeyEngine();
     void update();

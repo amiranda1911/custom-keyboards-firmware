@@ -3,10 +3,8 @@
 #include <Arduino.h>
 #include "HID-Project.h"
 
-
+#include <U8g2lib.h>
 #include <Wire.h>
-#include <Adafruit_GFX.h>
-#include <Adafruit_SSD1306.h>
 
 #include "Configuration.h"
 
