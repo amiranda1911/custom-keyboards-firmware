@@ -1,5 +1,6 @@
 #include "KeyEngine.hpp"
 
+U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R1);
 
 volatile bool encoderMoved = false; // Flag encoder moved
 volatile int encoderDirection = 0;  // +1 or -1
@@ -27,14 +28,10 @@ static void readEncoder() {
 }
 
 
-KeyEngine::KeyEngine() : display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1)
+KeyEngine::KeyEngine()
 {
 
-    if (!display.begin(SSD1306_SWITCHCAPVCC, 0x3C)) { //I2C address
-        Serial.println(F("SSD1306 allocation failed"));
-    }
-
-    
+    u8g2.begin();
     
     pinMode(encoder_pins[0],INPUT);
     pinMode(encoder_pins[1],INPUT);
@@ -95,6 +92,8 @@ void KeyEngine::matrixKeys()
                 keyState[r][c] = false;
             }
         }
+        digitalWrite(pinCols[c], HIGH);
+
     }
     #endif
 
@@ -107,7 +106,7 @@ void KeyEngine::keyPress(byte col, byte row){
     if(keyConfig[curLayer][row][col] == KEY_LAYER_DOWN && !keyState[row][col])
         curLayer --;
 
-    BootKeyboard.press(keyConfig[curLayer][row][col]);
+    BootKeyboard.press((KeyboardKeycode)keyConfig[curLayer][row][col]);
     
 }
 
@@ -116,17 +115,19 @@ void KeyEngine::keyRelease(byte col, byte row){
         curLayer = 1;
     if(keyConfig[curLayer][row][col] == KEY_LAYER_DOWN && keyState[row][col])
         curLayer = 1;
+        
 
-    BootKeyboard.release(keyConfig[curLayer][row][col]);
+    BootKeyboard.release((KeyboardKeycode) keyConfig[curLayer][row][col]);
 }
 
 void KeyEngine::updateDisplay(){
-    display.clearDisplay();
-    display.setTextSize(1);
-    display.setTextColor(WHITE);
-    display.setCursor(0,10);
-    display.print(encPosition);
-    display.setCursor(25,10);
-    display.print(lastEncoded);
-    display.display();
+    char layerNum[3] = "";
+    sprintf(layerNum, "%d", curLayer);
+    char layerMsg[9] = "Layer ";
+    strcat(layerMsg, layerNum );
+    u8g2.firstPage();
+  do {
+    u8g2.setFont(u8g2_font_ncenB08_tr);
+    u8g2.drawStr(0, 50, layerMsg);
+  } while (u8g2.nextPage());
 }
