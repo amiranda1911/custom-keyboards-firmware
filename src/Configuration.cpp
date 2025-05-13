@@ -5,22 +5,25 @@ unsigned char layersCount = 3;
 
 #ifdef LEFT_SIDE
 
-extern unsigned char keyConfig[3][4][6] = 
+unsigned char keyConfig[3][4][6] = 
 {
+    //layer 0
     {
       {KEY_ESC,   KEY_Q,  KEY_W,  KEY_E,    KEY_R,    KEY_T}, 
       {KEY_TAB,   KEY_A,  KEY_S,  KEY_D,    KEY_F,    KEY_G},
       {KEY_LEFT_SHIFT,  KEY_Z,  KEY_X,  KEY_C,    KEY_V,    KEY_B},
       {     KEY_LEFT_CTRL , KEY_LEFT_ALT, KEY_LEFT_GUI, KEY_LAYER_UP, KEY_ENTER, MEDIA_VOL_MUTE}
     },
+    //layer 1
     {
       {HID_KEYBOARD_GRAVE_ACCENT_AND_TILDE, KEY_1,  KEY_2,  KEY_3,    KEY_4,    KEY_5}, 
       {KEY_ESC,   KEY_Q,  KEY_W,  KEY_E,    KEY_R,    KEY_T}, 
       {KEY_TAB,   KEY_A,  KEY_S,  KEY_D,    KEY_F,    KEY_G},
       {     KEY_LEFT_CTRL , KEY_LEFT_ALT, KEY_LEFT_GUI, KEY_LAYER_UP, KEY_ENTER, MEDIA_VOL_MUTE}
     },
+    //layer 2
     {
-      {HID_KEYBOARD_GRAVE_ACCENT_AND_TILDE, KEY_1,  KEY_2,  KEY_3,    KEY_4,    KEY_5}, 
+      {KEY_F1,    KEY_F2,  KEY_F3,    KEY_F4,    KEY_F5, KEY_F6}, 
       {KEY_ESC,   KEY_Q,  KEY_W,  KEY_E,    KEY_R,    KEY_T}, 
       {KEY_TAB,   KEY_A,  KEY_S,  KEY_D,    KEY_F,    KEY_G},
       {     KEY_LEFT_CTRL , KEY_LEFT_ALT, KEY_LEFT_GUI, KEY_LAYER_UP, KEY_ENTER, MEDIA_VOL_MUTE}
