@@ -14,6 +14,24 @@ const int underglow_pin = PA_8;  // Underglow Left (RGB)
 
 // Layout Definitions
 
+#if defined(_4X6_MATRIX_)
+    // 6x6 Matrix Layout
+    const int rows[6] = {
+        PC_14,   // Row 1
+        PC_15,   // Row 2
+        PA_0,    // Row 3
+        PA_1,    // Row 4
+    };
+
+    const int lines[6] = {
+        PA_9,    // Column 1
+        PA_8,    // Column 2
+        PB_15,   // Column 3
+        PB_14,   // Column 4
+        PB_13,   // Column 5
+        PB_12    // Column 6
+    };
+
 #if defined(_6X6_MATRIX_)
     // 6x6 Matrix Layout
     const int rows[6] = {
