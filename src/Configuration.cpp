@@ -7,26 +7,29 @@ unsigned char layersCount = 3;
 
 unsigned char keyConfig[3][4][6] = 
 {
+
+
     //layer 0
+    {
+      {KEY_GRAVE, KEY_1,  KEY_2,  KEY_3,    KEY_4,    KEY_5}, 
+      {KEY_ESC,   KEY_Q,  KEY_W,  KEY_E,    KEY_R,    KEY_T}, 
+      {KEY_TAB,   KEY_A,  KEY_S,  KEY_D,    KEY_F,    KEY_G},
+      {     KEY_LEFT_CTRL , KEY_LEFT_ALT, KEY_LEFT_GUI, KEY_LAYER_UP, KEY_ENTER, 0x00}
+    },
+    
+    //layer 1
     {
       {KEY_ESC,   KEY_Q,  KEY_W,  KEY_E,    KEY_R,    KEY_T}, 
       {KEY_TAB,   KEY_A,  KEY_S,  KEY_D,    KEY_F,    KEY_G},
       {KEY_LEFT_SHIFT,  KEY_Z,  KEY_X,  KEY_C,    KEY_V,    KEY_B},
-      {     KEY_LEFT_CTRL , KEY_LEFT_ALT, KEY_LEFT_GUI, KEY_LAYER_UP, KEY_ENTER, MEDIA_VOL_MUTE}
-    },
-    //layer 1
-    {
-      {HID_KEYBOARD_GRAVE_ACCENT_AND_TILDE, KEY_1,  KEY_2,  KEY_3,    KEY_4,    KEY_5}, 
-      {KEY_ESC,   KEY_Q,  KEY_W,  KEY_E,    KEY_R,    KEY_T}, 
-      {KEY_TAB,   KEY_A,  KEY_S,  KEY_D,    KEY_F,    KEY_G},
-      {     KEY_LEFT_CTRL , KEY_LEFT_ALT, KEY_LEFT_GUI, KEY_LAYER_UP, KEY_ENTER, MEDIA_VOL_MUTE}
+      {     KEY_LEFT_CTRL , KEY_LEFT_ALT, KEY_LEFT_GUI, KEY_LAYER_UP, KEY_ENTER, 0}
     },
     //layer 2
     {
       {KEY_F1,    KEY_F2,  KEY_F3,    KEY_F4,    KEY_F5, KEY_F6}, 
-      {KEY_ESC,   KEY_Q,  KEY_W,  KEY_E,    KEY_R,    KEY_T}, 
-      {KEY_TAB,   KEY_A,  KEY_S,  KEY_D,    KEY_F,    KEY_G},
-      {     KEY_LEFT_CTRL , KEY_LEFT_ALT, KEY_LEFT_GUI, KEY_LAYER_UP, KEY_ENTER, MEDIA_VOL_MUTE}
+      {  0x00,  0x00,  KEY_UP_ARROW,  0x00,    0x00,    0x00}, 
+      {  0x00,  KEY_LEFT_ARROW,  KEY_DOWN_ARROW,  KEY_RIGHT_ARROW,    0x00,    0x00,},
+      {     KEY_LEFT_CTRL , KEY_LEFT_ALT, KEY_LEFT_GUI, KEY_LAYER_UP, KEY_ENTER, 0x00}
     }
   };
 
