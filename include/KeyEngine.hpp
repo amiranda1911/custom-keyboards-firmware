@@ -15,12 +15,12 @@
 //#define _6X14_MATRIX_
 //#define _6X18_MATRIX_
 
-
+void static updateLedMatrix();
 
 class KeyEngine
 {
 private:
-    bool keyState[keyRowsCount][keyColsCount];
+    bool keyState[keyColsCount][keyRowsCount];
     byte curLayer = 1;
     
 public:
@@ -30,4 +30,5 @@ public:
     void matrixKeys();
     void keyPress(byte col, byte row);
     void keyRelease(byte col, byte row);
+    
 };
