@@ -13,10 +13,9 @@
     #pragma message "compile for STM32"
     #define EEPROM_START_ADDR 0x0801FC00
     #include <Keyboard.h>
-
+    #include "Keys.h"
     #if defined(ARDUINO_BLUEPILL_F103C8)
         #include "PinConfig/stm32f103C8.h"
-        #include <Keyboard.h>
     #else
         #error "MCU not compatible"
     #endif
